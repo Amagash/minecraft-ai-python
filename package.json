@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "mineflayer": "^4.19.0",
+    "start": "^5.1.0"
+  },
+  "name": "minecraft-ai-python",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tiffany Souterre",
+  "license": "ISC"
+}

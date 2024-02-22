@@ -51,11 +51,11 @@ npm install
 python index.py
 ```
 
-In a few seconds, you should see a message that the bot is running, and you should see the NPC pop up in Minecraft.
+In a few seconds, you should see a message that the bot is running, and you should see the bot pop up in Minecraft.
 
 ### Sending commands
 
-Inside the Minecraft client, press the `T` key to open the chat box.
+Inside the Minecraft client, press the `T` key to open the chat box. You can now chat with your bot connected to your AI.
 
 ## Disclaimer
 

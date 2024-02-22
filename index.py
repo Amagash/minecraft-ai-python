@@ -3,13 +3,17 @@ import json
 from javascript import require, On
 
 mineflayer = require('mineflayer')
+pathfinder = require('mineflayer-pathfinder')
 
 bot = mineflayer.createBot({
   'host': 'localhost',
-  'port': 61026,
+  'port': 58917,
   'username':'Claude',
   'verbose': True,
 })
+
+# Create a new minecraft-data instance with the bot's version
+mcData = require('minecraft-data')(bot.version)
 
 @On(bot, 'spawn')
 def spawn(*args):
@@ -32,3 +36,8 @@ def handle(this, username, message, *args):
         response_body = json.loads(response.get("body").read())
         response = response_body.get("completion")
         bot.chat(response)
+        response = "bot.setControlState('jump', True)"
+        try:
+            eval("{}".format(response))
+        except:
+            bot.chat(response)

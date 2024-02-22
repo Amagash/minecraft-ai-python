@@ -7,7 +7,7 @@ mineflayer = require('mineflayer')
 bot = mineflayer.createBot({
   'host': 'localhost',
   'port': 61026,
-  'username':'TITI',
+  'username':'Claude',
   'verbose': True,
 })
 

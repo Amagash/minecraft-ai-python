@@ -1,6 +1,7 @@
 import boto3
 import json
 from javascript import require, On
+from context.simple import prompt
 
 mineflayer = require('mineflayer')
 pathfinder = require('mineflayer-pathfinder')
@@ -25,9 +26,11 @@ def handle(this, username, message, *args):
         return
     else:
         bedrock = boto3.client(service_name="bedrock-runtime")
+        query = "\n\nHuman: {}\n// {} \n\nAssistant:".format(prompt, message)
+        print(query)
         body = json.dumps(
             {
-                "prompt": "\n\nHuman: {} \n\nAssistant:".format(message),
+                "prompt": query,
                 "max_tokens_to_sample": 100,
                 "anthropic_version": "bedrock-2023-05-31"
             }
@@ -35,9 +38,10 @@ def handle(this, username, message, *args):
         response = bedrock.invoke_model(body=body, modelId="anthropic.claude-v2:1")
         response_body = json.loads(response.get("body").read())
         response = response_body.get("completion")
-        bot.chat(response)
-        response = "bot.setControlState('jump', True)"
+        print(response)
         try:
+            # WARNING: this is a very dangerous way to execute code! Do you trust AI?
+            # Note: the code is executed in the context of the bot entity
             eval("{}".format(response))
         except:
             bot.chat(response)

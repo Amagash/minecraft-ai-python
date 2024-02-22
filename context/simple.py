@@ -38,7 +38,7 @@ goToPlayer(bot, 2, target)
 // find me
 goToPlayer(bot, 2, target)
 
-// join me
+// follow me
 goToPlayer(bot, 2, target)
 
 // Follow me 

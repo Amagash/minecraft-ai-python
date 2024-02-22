@@ -2,6 +2,7 @@ import boto3
 import json
 from javascript import require, On
 from context.simple import prompt
+from skills.direction import *
 
 mineflayer = require('mineflayer')
 pathfinder = require('mineflayer-pathfinder')
@@ -29,15 +30,7 @@ def handle(this, username, message, *args):
     if username == bot.username:
         return
     else:
-
-        player = bot.players[username]
-        print("Target", player)
-        target = player.entity
-        pos = target.position
-        movements = pathfinder.Movements(bot)
-        bot.pathfinder.setMovements(movements)
-        bot.pathfinder.setGoal(pathfinder.goals.GoalNear(pos.x, pos.y, pos.z, RANGE_GOAL))
-
+        goToPlayer(bot, RANGE_GOAL, username)
 
         # bedrock = boto3.client(service_name="bedrock-runtime")
         # query = "\n\nHuman: {}\n// {} \n\nAssistant:".format(prompt, message)

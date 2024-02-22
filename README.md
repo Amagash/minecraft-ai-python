@@ -4,10 +4,19 @@ A proof of concept for controlling a bot in Minecraft with an AI.
 
 ## Requirements
 
-- Clone this project on your local machine.
+- Clone this project on your local machine
+```shell
+git clone https://github.com/Amagash/minecraft-ai-python.git
+```
 - [Minecraft](https://www.minecraft.net/en-us/get-minecraft) (Java Edition) version 1.17
 - Node.js version 14+
+- Python 3.8+
 - An [AWS](https://us-east-1.console.aws.amazon.com/) account 
+
+You can access mineflayer in Python in addition to any other JavaScript package by first installing the javascript pip package:
+```shell
+pip install javascript
+```
 
 ## How to use
 

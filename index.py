@@ -6,13 +6,16 @@ from helper.direction import *
 
 mineflayer = require('mineflayer')
 pathfinder = require('mineflayer-pathfinder')
-RANGE_GOAL = 1
+range_goal = 1
+
+
 
 bot = mineflayer.createBot({
   'host': 'localhost',
   'port': 58917,
   'username':'Claude',
   'verbose': True,
+  'checkTimeoutInterval': 60 * 10000,
 })
 
 bot.loadPlugin(pathfinder.pathfinder)
@@ -27,11 +30,9 @@ def spawn(*args):
 
 @On(bot, "chat")
 def handle(this, player_name, message, *args):
-    if player_name == bot.player_name:
+    if player_name == bot.username:
         return
     else:
-        follow_player(bot, RANGE_GOAL, player_name)
-
         bedrock = boto3.client(service_name="bedrock-runtime")
         query = "\n\nHuman: {}\n// {} \n\nAssistant:".format(prompt, message)
         print(query)
@@ -47,8 +48,15 @@ def handle(this, player_name, message, *args):
         response = response_body.get("completion")
         print(response)
         try:
-            # WARNING: this is a very dangerous way to execute code! Do you trust AI?
-            # Note: the code is executed in the context of the bot entity
+        # WARNING: this is a very dangerous way to execute code! Do you trust AI?
+        # Note: the code is executed in the context of the bot entity
+        
+            bot.chat("trying to execute code the following code: {}".format(response))
+
             eval("{}".format(response))
-        except:
-            bot.chat(response)
+            # eval("follow_player(bot, range_goal, player_name)")
+            print(response)
+        except Exception as error:
+            print("error: {}".format(error))
+            print("{}".format(response))
+            bot.chat("I could not execute that: {}".format(response))

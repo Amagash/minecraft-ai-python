@@ -6,7 +6,6 @@ from helper.direction import *
 
 mineflayer = require('mineflayer')
 pathfinder = require('mineflayer-pathfinder')
-range_goal = 1
 
 
 
@@ -19,7 +18,7 @@ bot = mineflayer.createBot({
 })
 
 bot.loadPlugin(pathfinder.pathfinder)
-# Create a new minecraft-data instance with the bot's version
+
 mcData = require('minecraft-data')(bot.version)
 
 
@@ -48,13 +47,11 @@ def handle(this, player_name, message, *args):
         response = response_body.get("completion")
         print(response)
         try:
-        # WARNING: this is a very dangerous way to execute code! Do you trust AI?
-        # Note: the code is executed in the context of the bot entity
-        
-            bot.chat("trying to execute code the following code: {}".format(response))
+            # WARNING: this is a very dangerous way to execute code! Do you trust AI?
+            # Note: the code is executed in the context of the bot entity
 
+            bot.chat("trying to execute code the following code: {}".format(response))
             eval("{}".format(response))
-            # eval("follow_player(bot, range_goal, player_name)")
             print(response)
         except Exception as error:
             print("error: {}".format(error))

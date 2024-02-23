@@ -33,10 +33,10 @@ bot.chat("My position is " + bot.entity.position)
 bot.clearControlStates()
 
 // Come with me
-follow_player(bot, range_goal, player_name)
+follow_player(bot, player_name)
 
 // follow me
-follow_player(bot, range_goal, player_name)
+follow_player(bot, player_name)
 
 // Stop following me
 stop_following_player()

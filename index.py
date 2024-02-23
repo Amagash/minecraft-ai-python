@@ -26,11 +26,11 @@ def spawn(*args):
   
 
 @On(bot, "chat")
-def handle(this, username, message, *args):
-    if username == bot.username:
+def handle(this, player_name, message, *args):
+    if player_name == bot.player_name:
         return
     else:
-        goToPlayer(bot, RANGE_GOAL, username)
+        goToPlayer(bot, RANGE_GOAL, player_name)
 
         # bedrock = boto3.client(service_name="bedrock-runtime")
         # query = "\n\nHuman: {}\n// {} \n\nAssistant:".format(prompt, message)

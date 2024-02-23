@@ -32,20 +32,11 @@ bot.chat("My position is " + bot.entity.position)
 // Stop any movement
 bot.clearControlStates()
 
-// Come to me
-goToPlayer(bot, 2, target)
-
-// find me
-goToPlayer(bot, 2, target)
+// Come with me
+follow_player(bot, RANGE_GOAL, player_name)
 
 // follow me
-goToPlayer(bot, 2, target)
-
-// Follow me 
-goToPlayerInterval = setInterval(() => goToPlayer(bot, 2, target), 1000)
-
-// Keep following me 
-goToPlayerInterval = setInterval(() => goToPlayer(bot, 2, target), 1000)
+follow_player(bot, RANGE_GOAL, player_name)
 
 // Stop following me
 clearInterval(goToPlayerInterval)

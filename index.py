@@ -7,11 +7,9 @@ from helper.direction import *
 mineflayer = require('mineflayer')
 pathfinder = require('mineflayer-pathfinder')
 
-
-
 bot = mineflayer.createBot({
   'host': 'localhost',
-  'port': 58917,
+  'port': 50632,
   'username':'Claude',
   'verbose': True,
   'checkTimeoutInterval': 60 * 10000,
@@ -50,10 +48,10 @@ def handle(this, player_name, message, *args):
             # WARNING: this is a very dangerous way to execute code! Do you trust AI?
             # Note: the code is executed in the context of the bot entity
 
-            bot.chat("trying to execute code the following code: {}".format(response))
+            bot.chat("Claude generated the following line of code: {}".format(response))
             eval("{}".format(response))
             print(response)
         except Exception as error:
             print("error: {}".format(error))
             print("{}".format(response))
-            bot.chat("I could not execute that: {}".format(response))
+            bot.chat("ERROR I could not execute that")

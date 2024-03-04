@@ -9,7 +9,7 @@ pathfinder = require('mineflayer-pathfinder')
 
 bot = mineflayer.createBot({
   'host': 'localhost',
-  'port': 50632,
+  'port': [PORT_NUMBER],
   'username':'Claude',
   'verbose': True,
   'checkTimeoutInterval': 60 * 10000,

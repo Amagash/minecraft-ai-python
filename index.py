@@ -14,10 +14,10 @@ pathfinder = require('mineflayer-pathfinder')
 
 bot = mineflayer.createBot({
   'host': 'localhost',
-  'port': 56818,
+  'port': 59714,
   'username':'Mistral',
   'verbose': True,
-  'checkTimeoutInterval': 60 * 10000,
+#   'checkTimeoutInterval': 60 * 10000,
 })
 
 bot.loadPlugin(pathfinder.pathfinder)
@@ -53,10 +53,25 @@ def generate_text(message):
 
 
     response_body = json.loads(response.get("body").read())
-    response = response_body.get('outputs')
+    outputs = response_body.get('outputs')
+    text = outputs[0]['text']
+    print (text)
+    return text
 
-    return response
+def extract_substring(text, trigger_str, end_str):
+    last_trigger_index = text.rfind(trigger_str)
 
+    if last_trigger_index == -1:
+        return ""
+
+    next_end_index = text.find(end_str, last_trigger_index)
+
+    if next_end_index == -1:
+        return ""
+
+    substring = text[last_trigger_index + len(trigger_str):next_end_index]
+
+    return substring
 
 @On(bot, 'spawn')
 def spawn(*args):
@@ -69,14 +84,21 @@ def handle(this, player_name, message, *args):
         return
     else:
         response = generate_text(message)
+        code = extract_substring(response, "<code>", "</code>")
         try:
             # WARNING: this is a very dangerous way to execute code! Do you trust AI?
             # Note: the code is executed in the context of the bot entity
-
-            bot.chat("Claude generated the following line of code: {}".format(response))
-            eval("{}".format(response))
-            print(response)
+            if code != "":
+                code = code.strip()
+                for code_line in code.split('\n'):
+                    print(f"Running: {code_line}")
+                    eval("{}".format(code_line))
         except Exception as error:
             print("error: {}".format(error))
-            print("{}".format(response))
-            bot.chat("ERROR I could not execute that")
+            bot.chat("I could not execute that: {}".format(code))
+
+
+# if __name__ == "__main__":
+#     message = "move forward 1 step."
+#     response = generate_text(message)
+#     code = code_extract(response)

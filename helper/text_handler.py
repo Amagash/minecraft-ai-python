@@ -10,13 +10,14 @@ def generate_text(message):
     model_id = "mistral.mistral-large-2402-v1:0"
     message_prompt = prompt.replace("[[MESSAGE]]", message)
     prompt_to_ai = """<s>[INST] {} [/INST]""".format(message_prompt)
+    # logger.info("PROMPT BEGINNING: %s PROMPT ENDS", prompt_to_ai)
 
     bedrock = boto3.client(service_name="bedrock-runtime")
 
     body = json.dumps(
         {
             "prompt": prompt_to_ai,
-            "max_tokens": 400,
+            "max_tokens": 500,
             "temperature": 0.7,
             "top_p": 0.7,
             "top_k": 50
@@ -29,9 +30,6 @@ def generate_text(message):
         body=body,
         modelId=model_id
     )
-
-    logger.info("Successfully generated text with Mistral AI model %s", model_id)
-
 
     response_body = json.loads(response.get("body").read())
     outputs = response_body.get('outputs')

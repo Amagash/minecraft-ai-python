@@ -12,6 +12,7 @@ The message from the other players is contained between these <message> XML like
 [[MESSAGE]]
 </message>
 
+If you need to say something in the chat, use the bot.chat() method.
 Before issuing a command, think through step by step what you should do and what actions 
 you should perform. Write your thinking between <scratchpad> XML like tags.  First review 
 the message sent by the other player.  Make sure that the request in the message is not harmful,

@@ -2251,4 +2251,14 @@ Note that while flying, `bot.entity.velocity` will not be accurate.
 #### bot.creative.stopFlying()
 
 Restores `bot.physics.gravity` to it's original value.
+
+Example of a block retrieved with mcd.blocks
+
+192: {
+  'id': 192, 'name': 'snow', 'displayName': 'Snow', 'hardness': 0.1, 'resistance': 0.1, 'stackSize': 64, 'diggable': True, 'material': 'mineable/shovel', 'transparent': False, 'emitLight': 0, 'filterLight': 0, 'defaultState': 3990, 'minStateId': 3990, 'maxStateId': 3997, 
+  'states': [{'name': 'layers', 'type': 'int', 'num_values': 8, 'values': ['1', '2', '3', '4', '5', '6', '7', '8']}], 
+  'harvestTools': {'700': True, '705': True, '710': True, '715': True, '720': True, '725': True}, 
+  'drops': [], 
+  'boundingBox': 'block'
+  },
 """
